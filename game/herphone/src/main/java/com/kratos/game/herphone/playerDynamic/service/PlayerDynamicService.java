@@ -356,28 +356,7 @@ public class PlayerDynamicService extends BaseService{
 //		return 2;
 //	}
 	
-	/**
-	 * 设置护眼大队 0设置失败 1设置成功 2没有此玩家
-	 */
-	public int setItemTitle(String roleId) {
-		Long playerId = playerServiceImpl.getPlayerByRoleId(roleId);
-		if (playerId == null) {
-			throw new BusinessException("未找到玩家");
-		}
-		GameParams_Json gameParams_Json = GameParamsCache.getGameParams_Json();
-		PlayerDynamicEntity playerDynamicEntity = load(playerId);
-		List<Integer> titleList = new ArrayList<Integer>();		
-		titleList = playerDynamicEntity.getItemTitle();
-		if(titleList.contains(gameParams_Json.getProtectEyesTitleId())) {
-			return 0;
-		}
-		titleList.add(gameParams_Json.getProtectEyesTitleId());
-		playerDynamicDao.setItemTitle(playerId,titleList,System.currentTimeMillis());
-		commonService.resetPlayerExtra(playerService.get(playerDynamicEntity.getPlayerId()), playerDynamicEntity);
-		GMDataChange.recordChange("通过ID设置护眼大队\tID为",roleId);
-		return 1;	
-	
-	}
+
 	/**
 	 * 设置护眼大队 0设置失败 1设置成功 2没有此玩家
 	 */

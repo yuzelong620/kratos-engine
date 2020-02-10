@@ -6,6 +6,7 @@ import com.kratos.game.herphone.player.dao.RewardDao;
 import com.kratos.game.herphone.player.service.PlayerService;
 import com.kratos.game.herphone.player.service.PlayerServiceImpl;
 import com.kratos.game.herphone.playerDynamic.dao.PlayerDynamicDao;
+import com.kratos.game.herphone.playerOnline.dao.PlayerLoginTimeDao;
 import com.kratos.game.herphone.sms.dao.SmsDao;
 import com.kratos.game.herphone.systemMessgae.dao.PublicSystemMessageDao;
 import com.kratos.game.herphone.systemMessgae.dao.SystemMessageLastDao;
@@ -40,4 +41,6 @@ public abstract class BaseService extends BaseController{
 	protected PlayerService playerService;
 	@Autowired
 	protected PlayerServiceImpl playerServiceImpl;
+	@Autowired
+	protected PlayerLoginTimeDao playerLoginTimeDao;
 }

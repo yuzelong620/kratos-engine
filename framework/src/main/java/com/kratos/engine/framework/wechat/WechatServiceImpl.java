@@ -3,6 +3,7 @@ package com.kratos.engine.framework.wechat;
 import com.alibaba.fastjson.JSON;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.kratos.engine.framework.wechat.bean.ResAccessToken;
+import com.kratos.engine.framework.wechat.bean.ResWechatMiniOpenId;
 import com.kratos.engine.framework.wechat.bean.ResWechatUserInfo;
 
 import java.util.HashMap;
@@ -16,13 +17,15 @@ public class WechatServiceImpl implements WechatService {
     public static final String GET_APP_ACCESS_TOKEN = "https://api.weixin.qq.com/sns/oauth2/access_token";
     public static final String GET_USER_INFO = "https://api.weixin.qq.com/sns/userinfo";
 
+    public static final String GET_WECHAT_MINI_OPENID = " https://api.weixin.qq.com/sns/jscode2session";
+
     private WechatServiceImpl(String appId, String secret) {
         this.APP_ID = appId;
         this.SECRET = secret;
     }
 
     public static WechatService of(String appId, String secret) {
-       return new WechatServiceImpl(appId, secret);
+        return new WechatServiceImpl(appId, secret);
     }
 
     @Override
@@ -58,4 +61,20 @@ public class WechatServiceImpl implements WechatService {
 
         return JSON.parseObject(result, ResWechatUserInfo.class);
     }
+
+    /**
+     * 微信小程序根据code获取openid
+     */
+    @Override
+    public ResWechatMiniOpenId getWechatMiniOpenId(String code) {
+        Map<String, String> params = new HashMap<>();
+        params.put("appid", APP_ID);
+        params.put("secret", SECRET);
+        params.put("grant_type", "authorization_code");
+        params.put("js_code", code);
+        String result = HttpRequest.get(GET_WECHAT_MINI_OPENID, params, true).accept("application/json").body();
+        return JSON.parseObject(result, ResWechatMiniOpenId.class);
+    }
+
+
 }

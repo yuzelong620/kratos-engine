@@ -47,5 +47,27 @@ public class PlayerController extends BaseController{
     /**
      * qq登录
      */
+    @PostMapping("/tencent/login2")
+    @PrePermissions(required = false)
+    public ResponseEntity<ResPlayerLogin> tencentLogin2(@RequestBody ReqPlayerTencentLogin request) {
+        return new ResponseEntity<>(playerService.tencentLogin2(request), HttpStatus.OK);
+    }
+
+    /**
+     * 微信登陆
+     */
+    @PostMapping("/wechat/login")
+    @PrePermissions(required = false)
+    public ResponseEntity<ResPlayerLogin> wechatLogin(@RequestBody ReqPlayerWechatLogin request) {
+        return new ResponseEntity<>(playerService.wechatLogin(request.getCode()), HttpStatus.OK);
+    }
+    /**
+     * 微信小程序登录,获取openId
+     */
+    @PostMapping("/wechatMini/login")
+    @PrePermissions(required = false)
+    public ResponseEntity<?> wechatMiniLogin(@RequestBody ReqPlayerWechatLogin request) {
+        return new ResponseEntity<>(playerService.wechatMiniLogin(request.getCode()), HttpStatus.OK);
+    }
 
 }

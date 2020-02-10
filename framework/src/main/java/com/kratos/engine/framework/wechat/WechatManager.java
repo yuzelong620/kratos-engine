@@ -10,9 +10,14 @@ import java.util.Map;
 public class WechatManager {
     private static final Map<String, WechatService> wechatServiceMap = new HashMap<>();
     private static final String DEFAULT_SERVICE = "DEFAULT_SERVICE";
+    private static final String MINI_SERVICE = "MINI_SERVICE";
 
     public WechatService create(String appId, String secret) {
         return create(DEFAULT_SERVICE, appId, secret);
+    }
+
+    public WechatService createMini(String appId, String secret) {
+        return create(MINI_SERVICE, appId, secret);
     }
 
     public WechatService create(String name, String appId, String secret) {
@@ -29,4 +34,10 @@ public class WechatManager {
     public WechatService getWechatService(String name) {
         return wechatServiceMap.get(name);
     }
+
+    public WechatService getWechatMiniService() {
+        return getWechatService(MINI_SERVICE);
+    }
+
+
 }
