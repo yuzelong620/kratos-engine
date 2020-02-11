@@ -207,16 +207,16 @@ public class SystemMessgaeService extends BaseService{
 //		return true;
 //	}
 //
-//	/**
-//	 *  玩家是否有未读消息
-//	 * @param toPlayerId
-//	 * @return 返回玩家消息状态 ： 1=有，0没有
-//	 */
-//	public int getPlayerUnreadState(long playerId) {
-//		SystemMessgaeEntity systemMessgaeEntity = systemMessgaeDao.findOneUnreadReply(playerId);
-//		if (systemMessgaeEntity == null) {
-//			return 0;
-//		}
-//		return 1;
-//	}
+	/**
+	 *  玩家是否有未读消息
+	 * param toPlayerId
+	 * @return 返回玩家消息状态 ： 1=有，0没有
+	 */
+	public int getPlayerUnreadState(long playerId) {
+		SystemMessgaeEntity systemMessgaeEntity = systemMessgaeDao.findOneUnreadReply(playerId);
+		if (systemMessgaeEntity == null) {
+			return 0;
+		}
+		return 1;
+	}
 }

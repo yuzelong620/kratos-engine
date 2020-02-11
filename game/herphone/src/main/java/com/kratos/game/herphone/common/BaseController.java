@@ -1,11 +1,16 @@
 package com.kratos.game.herphone.common;
 
 import com.kratos.game.herphone.bag.service.BagService;
+import com.kratos.game.herphone.blackList.service.BlackListService;
 import com.kratos.game.herphone.gamemanager.service.AdminUserService;
 import com.kratos.game.herphone.gamemanager.service.GameScoreService;
+import com.kratos.game.herphone.message.service.MessageFirstService;
+import com.kratos.game.herphone.message.service.MessageService;
 import com.kratos.game.herphone.player.service.PlayerService;
 import com.kratos.game.herphone.playerDynamic.service.PlayerDynamicService;
+import com.kratos.game.herphone.playerOnline.service.PlayerOnlineService;
 import com.kratos.game.herphone.sms.service.SmsService;
+import com.kratos.game.herphone.system.service.SystemService;
 import com.kratos.game.herphone.systemMessgae.service.PublicSystemMessageService;
 import com.kratos.game.herphone.systemMessgae.service.SystemMessageLastService;
 import com.kratos.game.herphone.systemMessgae.service.SystemMessgaeService;
@@ -41,9 +46,16 @@ public abstract class BaseController {
 	@Autowired
 	protected UserService userService;
 
-
-//	@Autowired
-//	protected SystemService systemService;
+	@Autowired
+	protected PlayerOnlineService playerOnlineService;
+	@Autowired
+	protected MessageService messageService;
+	@Autowired
+	protected MessageFirstService messageFirstService;
+	@Autowired
+	protected BlackListService blackListService;
+	@Autowired
+	protected SystemService systemService;
 
 
 }

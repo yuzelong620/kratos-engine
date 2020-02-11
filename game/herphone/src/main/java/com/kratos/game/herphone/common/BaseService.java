@@ -1,12 +1,16 @@
 package com.kratos.game.herphone.common;
 
 import com.kratos.game.herphone.bag.dao.BagDao;
+import com.kratos.game.herphone.blackList.dao.BlackListDao;
+import com.kratos.game.herphone.message.dao.MessageDao;
+import com.kratos.game.herphone.message.dao.MessageFirstDao;
 import com.kratos.game.herphone.player.dao.ExchangeRewardDao;
 import com.kratos.game.herphone.player.dao.RewardDao;
 import com.kratos.game.herphone.player.service.PlayerService;
 import com.kratos.game.herphone.player.service.PlayerServiceImpl;
 import com.kratos.game.herphone.playerDynamic.dao.PlayerDynamicDao;
 import com.kratos.game.herphone.playerOnline.dao.PlayerLoginTimeDao;
+import com.kratos.game.herphone.playerOnline.dao.PlayerOnlineDao;
 import com.kratos.game.herphone.playerOnline.service.PlayerLoginTimeService;
 import com.kratos.game.herphone.sms.dao.SmsDao;
 import com.kratos.game.herphone.systemMessgae.dao.PublicSystemMessageDao;
@@ -49,4 +53,12 @@ public abstract class BaseService extends BaseController{
 	protected UserDao userDao;
 	@Autowired
 	protected PlayerLoginTimeService playerLoginTimeService;
+	@Autowired
+	protected PlayerOnlineDao playerOnlineDao;
+	@Autowired
+	protected MessageDao messageDao;
+	@Autowired
+	protected MessageFirstDao messageFirstDao;
+	@Autowired
+	protected BlackListDao blackListDao;
 }
