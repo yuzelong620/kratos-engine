@@ -10,6 +10,7 @@ import com.kratos.game.herphone.systemMessgae.service.PublicSystemMessageService
 import com.kratos.game.herphone.systemMessgae.service.SystemMessageLastService;
 import com.kratos.game.herphone.systemMessgae.service.SystemMessgaeService;
 import com.kratos.game.herphone.tencent.service.UnionIdService;
+import com.kratos.game.herphone.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -37,6 +38,9 @@ public abstract class BaseController {
 
 	@Autowired
 	protected PlayerService playerService;
+	@Autowired
+	protected UserService userService;
+
 
 //	@Autowired
 //	protected SystemService systemService;

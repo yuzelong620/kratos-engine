@@ -7,11 +7,13 @@ import com.kratos.game.herphone.player.service.PlayerService;
 import com.kratos.game.herphone.player.service.PlayerServiceImpl;
 import com.kratos.game.herphone.playerDynamic.dao.PlayerDynamicDao;
 import com.kratos.game.herphone.playerOnline.dao.PlayerLoginTimeDao;
+import com.kratos.game.herphone.playerOnline.service.PlayerLoginTimeService;
 import com.kratos.game.herphone.sms.dao.SmsDao;
 import com.kratos.game.herphone.systemMessgae.dao.PublicSystemMessageDao;
 import com.kratos.game.herphone.systemMessgae.dao.SystemMessageLastDao;
 import com.kratos.game.herphone.systemMessgae.dao.SystemMessgaeDao;
 import com.kratos.game.herphone.tencent.dao.UnionIdDao;
+import com.kratos.game.herphone.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseService extends BaseController{
@@ -43,4 +45,8 @@ public abstract class BaseService extends BaseController{
 	protected PlayerServiceImpl playerServiceImpl;
 	@Autowired
 	protected PlayerLoginTimeDao playerLoginTimeDao;
+	@Autowired
+	protected UserDao userDao;
+	@Autowired
+	protected PlayerLoginTimeService playerLoginTimeService;
 }

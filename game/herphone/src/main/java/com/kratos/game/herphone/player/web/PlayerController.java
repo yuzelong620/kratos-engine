@@ -70,4 +70,39 @@ public class PlayerController extends BaseController{
         return new ResponseEntity<>(playerService.wechatMiniLogin(request.getCode()), HttpStatus.OK);
     }
 
+    /**
+     * 手机登录
+     */
+    @PostMapping("/mobileLogin")
+    @PrePermissions(required = false)
+    public ResponseEntity<ResPlayerLogin> mobileLogin(@RequestBody ReqSmsCode param){
+        GameParams_Json cache=JsonCacheManager.getCache(GameParamsCache.class).getGameParams_Json();
+        //
+        if(cache.getIos_assessor_phone().contains(param.getMobile())){
+            return new ResponseEntity<ResPlayerLogin>(userService.validationBinding(param.getMobile()),HttpStatus.OK);
+        }
+        boolean b = smsService.validateVerifyCode(param.getMobile(), "", param.getCode());
+        if (!b) {
+            throw new BusinessException("验证码错误或验证码已失效");
+        }
+        return new ResponseEntity<ResPlayerLogin>(userService.validationBinding(param.getMobile()),HttpStatus.OK);
+    }
+
+    /**
+     * 手机注册
+     */
+    @PostMapping("/mobileRegister")
+    @PrePermissions(required = false)
+    public ResponseEntity<ResPlayerLogin> mobileRegister(@RequestBody ReqSmsCode param){
+        GameParams_Json cache=JsonCacheManager.getCache(GameParamsCache.class).getGameParams_Json();
+        //
+        if(cache.getIos_assessor_phone().contains(param.getMobile())){
+            return new ResponseEntity<ResPlayerLogin>(userService.registerByPhone((param.getMobile())),HttpStatus.OK);
+        }
+        boolean b = smsService.validateVerifyCode(param.getMobile(), "", param.getCode());
+        if (!b) {
+            throw new BusinessException("验证码错误或验证码已失效");
+        }
+        return new ResponseEntity<ResPlayerLogin>(userService.registerByPhone((param.getMobile())),HttpStatus.OK);
+    }
 }

@@ -394,4 +394,22 @@ public class PlayerServiceImpl extends BaseCrudService<Long, Player> implements 
         List<Player> list = query.getResultList();
         return list;
     }
+
+    /**
+     * 游客手机注册
+     * @return
+     */
+    public Player guestRegisterByPhone() {
+        Player player = new Player();
+        player.setRoleId(roleIdService.getNextRoleId());
+        player.setIsGuest(0);
+        try {
+            player.setNickName(new String(Base64.getEncoder().encode(("guest" + player.getRoleId()).getBytes()), CommonConstant.UTF8));
+        } catch (UnsupportedEncodingException e) {
+            log.error("", e);
+        }
+        player.setGender("1");
+        return this.register(player,100);
+    }
+
 }
